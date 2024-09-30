@@ -8,9 +8,12 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow: hidden;
             background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
             animation: gradient 5s ease infinite;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: space-between;
         }
         @keyframes gradient {
             0% { background-position: 0% 50%; }
@@ -23,17 +26,17 @@
             background: radial-gradient(circle, yellow 60%, orange 100%);
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            top: 95px;
+            top: 35px;
             left: 20px;
         }
         .light-ray {
             position: absolute;
-            top: 115px; /* Ajustar según la posición del sol */
+            top: 55px; /* Ajustar según la posición del sol */
             left: 60px; /* Ajustar según la posición del sol */
-            width: 0; /* Longitud inicial del rayo */
-            height: 0; /* Grosor inicial */
+            width: 0;
+            height: 0;
             background: radial-gradient(circle, rgba(255, 255, 0, 0.5) 0%, rgba(255, 255, 0, 0) 100%);
-            transform-origin: left center; /* Punto de origen para la rotación */
+            transform-origin: left center;
             transform: rotate(0deg);
             z-index: -1;
         }
@@ -41,13 +44,12 @@
             padding: 20px;
             text-align: center;
             color: #333;
-            position: relative;
             z-index: 1;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100%;
         }
         h1 {
             font-size: 2.5em;
@@ -55,6 +57,12 @@
         }
         p {
             font-size: 1.2em;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: transparent; /* Fondo transparente */
+            color: #333; /* Color de texto para contraste */
         }
     </style>
 </head>
@@ -66,6 +74,13 @@
         <h1>Solar Trackers</h1>
         <p>Nuestros paneles solares utilizan fotoresistores y servos para seguir al sol en 360 grados, maximizando la captación de energía solar.</p>
     </div>
+
+    <footer>
+        <h2>¿Quiénes Somos?</h2>
+        <p>Juan Manuel: Gerente de ventas.</p>
+        <p>Francisco Haran: Contador.</p>
+        <p>Agustin Corchs: Programador y Diseñador.</p>
+    </footer>
 
     <script>
         const sunRay = document.getElementById('sun-ray');
@@ -79,9 +94,8 @@
             const angle = Math.atan2(event.clientY - sunY, event.clientX - sunX) * (180 / Math.PI);
             const distance = Math.sqrt(Math.pow(event.clientX - sunX, 2) + Math.pow(event.clientY - sunY, 2));
 
-            // Ajustar la longitud del rayo y su altura
             lightRay.style.width = `${distance}px`;
-            lightRay.style.height = `52px`; // Grosor constante
+            lightRay.style.height = `52px`;
             lightRay.style.transform = `rotate(${angle}deg)`;
         });
     </script>
