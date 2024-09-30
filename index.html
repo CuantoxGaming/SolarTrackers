@@ -23,18 +23,19 @@
             background: radial-gradient(circle, yellow 60%, orange 100%);
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            top: 90px; /* Ajusta la posición vertical */
-            left: 20px; /* Ajusta la posición horizontal */
+            top: 95px;
+            left: 20px;
         }
         .light-ray {
             position: absolute;
             background: rgba(255, 255, 0, 0.5);
-            height: 58px; /* Grosor del rayo */
-            top: 100px; /* Ajusta según la posición del sol */
-            left: 0; /* Empieza desde el lado izquierdo */
-            width: 100vw; /* Se extiende a lo largo de la pantalla */
-            transform: rotate(0deg); /* Ajusta el ángulo del rayo si es necesario */
-            z-index: -1; /* Para que esté detrás del sol */
+            height: 52px; /* Grosor del rayo */
+            top: 115px; /* Ajustar según la posición del sol */
+            left: 60px; /* Ajustar según la posición del sol */
+            width: 0; /* Longitud inicial del rayo */
+            transform-origin: left center; /* Punto de origen para la rotación */
+            transform: rotate(0deg);
+            z-index: -1;
         }
         .info {
             padding: 20px;
@@ -66,5 +67,25 @@
         <p>Nuestros paneles solares utilizan fotoresistores y servos para seguir al sol en 360 grados, maximizando la captación de energía solar.</p>
     </div>
 
+    <script>
+        const sunRay = document.getElementById('sun-ray');
+        const lightRay = document.querySelector('.light-ray');
+
+        document.addEventListener('mousemove', (event) => {
+            const sunRect = sunRay.getBoundingClientRect();
+            const sunX = sunRect.left + sunRect.width / 2;
+            const sunY = sunRect.top + sunRect.height / 2;
+
+            const angle = Math.atan2(event.clientY - sunY, event.clientX - sunX) * (180 / Math.PI);
+            const distance = Math.sqrt(Math.pow(event.clientX - sunX, 2) + Math.pow(event.clientY - sunY, 2));
+
+            // Ajustar la longitud del rayo
+            lightRay.style.width = `${distance}px`;
+            lightRay.style.transform = `rotate(${angle}deg)`;
+        });
+    </script>
+
 </body>
+</html>
+
 </html>
