@@ -9,20 +9,49 @@
             margin: 0;
             font-family: Arial, sans-serif;
             overflow: hidden;
-            background-color: #e0f7fa;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            animation: gradient 5s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
         #sun-ray {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background: yellow;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, yellow 60%, orange 100%);
             border-radius: 50%;
             pointer-events: none;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             transition: transform 0.1s;
         }
         .info {
             padding: 20px;
             text-align: center;
+            color: #333;
+            position: relative;
+            z-index: 1;
+        }
+        .login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffb300;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -33,13 +62,21 @@
         <h1>Solar Trackers</h1>
         <p>Nuestros paneles solares utilizan fotoresistores y servos para seguir al sol en 360 grados, maximizando la captación de energía solar.</p>
     </div>
+    
+    <div class="login">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" placeholder="Usuario" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+    </div>
 
     <script>
         const sunRay = document.getElementById('sun-ray');
         document.addEventListener('mousemove', (e) => {
-            sunRay.style.transform = `translate(${e.clientX - 25}px, ${e.clientY - 25}px)`;
+            sunRay.style.transform = `translate(${e.clientX - 30}px, ${e.clientY - 30}px)`;
         });
     </script>
 
 </body>
 </html>
+
