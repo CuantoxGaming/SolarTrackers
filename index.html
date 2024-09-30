@@ -23,21 +23,18 @@
             background: radial-gradient(circle, yellow 60%, orange 100%);
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
-            transition: transform 0.1s;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            top: 80px; /* Ajusta la posición vertical */
+            left: 20px; /* Ajusta la posición horizontal */
         }
-        .rayo {
+        .light-ray {
             position: absolute;
-            width: 10px;
-            height: 40px;
-            background: yellow;
-            border-radius: 5px;
-            transform-origin: bottom center;
-            opacity: 0.8;
-            z-index: 5;
+            background: rgba(255, 255, 0, 0.5);
+            height: 8px; /* Grosor del rayo */
+            top: 100px; /* Ajusta según la posición del sol */
+            left: 0; /* Empieza desde el lado izquierdo */
+            width: 100vw; /* Se extiende a lo largo de la pantalla */
+            transform: rotate(0deg); /* Ajusta el ángulo del rayo si es necesario */
+            z-index: -1; /* Para que esté detrás del sol */
         }
         .info {
             padding: 20px;
@@ -63,32 +60,11 @@
 <body>
 
     <div id="sun-ray"></div>
+    <div class="light-ray"></div>
     <div class="info">
         <h1>Solar Trackers</h1>
         <p>Nuestros paneles solares utilizan fotoresistores y servos para seguir al sol en 360 grados, maximizando la captación de energía solar.</p>
     </div>
-
-    <script>
-        const sunRay = document.getElementById('sun-ray');
-
-        function createRays() {
-            const raysCount = 12;
-            const angleStep = 360 / raysCount;
-
-            for (let i = 0; i < raysCount; i++) {
-                const rayo = document.createElement('div');
-                rayo.classList.add('rayo');
-                rayo.style.transform = `rotate(${i * angleStep}deg) translateY(-50px)`;
-                sunRay.appendChild(rayo);
-            }
-        }
-
-        createRays();
-
-        document.addEventListener('mousemove', (e) => {
-            sunRay.style.transform = `translate(${e.clientX - 40}px, ${e.clientY - 40}px)`;
-        });
-    </script>
 
 </body>
 </html>
