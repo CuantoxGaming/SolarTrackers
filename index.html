@@ -24,7 +24,17 @@
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             transition: transform 0.1s;
-            animation: spin 5s linear infinite;
+            z-index: 10;
+        }
+        .rayo {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: yellow;
+            border-radius: 5px;
+            transform-origin: bottom center;
+            opacity: 0.8;
+            z-index: 5;
         }
         @keyframes spin {
             from { transform: rotate(0deg); }
@@ -61,6 +71,21 @@
 
     <script>
         const sunRay = document.getElementById('sun-ray');
+
+        function createRays() {
+            const raysCount = 12;
+            const angleStep = 360 / raysCount;
+
+            for (let i = 0; i < raysCount; i++) {
+                const rayo = document.createElement('div');
+                rayo.classList.add('rayo');
+                rayo.style.transform = `rotate(${i * angleStep}deg) translateY(-40px)`;
+                sunRay.appendChild(rayo);
+            }
+        }
+
+        createRays();
+
         document.addEventListener('mousemove', (e) => {
             sunRay.style.transform = `translate(${e.clientX - 40}px, ${e.clientY - 40}px)`;
         });
