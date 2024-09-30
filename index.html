@@ -71,6 +71,21 @@
     </div>
 
     <script>
+        const loginButton = document.querySelector('button');
+        loginButton.addEventListener('click', async () => {
+            const username = document.querySelector('input[type="text"]').value;
+            const password = document.querySelector('input[type="password"]').value;
+
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const message = await response.text();
+            alert(message);
+        });
+
         const sunRay = document.getElementById('sun-ray');
         document.addEventListener('mousemove', (e) => {
             sunRay.style.transform = `translate(${e.clientX - 30}px, ${e.clientY - 30}px)`;
@@ -79,4 +94,5 @@
 
 </body>
 </html>
+
 
