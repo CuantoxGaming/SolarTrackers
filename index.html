@@ -28,11 +28,11 @@
         }
         .light-ray {
             position: absolute;
-            background: rgba(255, 255, 0, 0.5);
-            height: 52px; /* Grosor del rayo */
             top: 115px; /* Ajustar según la posición del sol */
             left: 60px; /* Ajustar según la posición del sol */
             width: 0; /* Longitud inicial del rayo */
+            height: 0; /* Grosor inicial */
+            background: radial-gradient(circle, rgba(255, 255, 0, 0.5) 0%, rgba(255, 255, 0, 0) 100%);
             transform-origin: left center; /* Punto de origen para la rotación */
             transform: rotate(0deg);
             z-index: -1;
@@ -79,13 +79,12 @@
             const angle = Math.atan2(event.clientY - sunY, event.clientX - sunX) * (180 / Math.PI);
             const distance = Math.sqrt(Math.pow(event.clientX - sunX, 2) + Math.pow(event.clientY - sunY, 2));
 
-            // Ajustar la longitud del rayo
+            // Ajustar la longitud del rayo y su altura
             lightRay.style.width = `${distance}px`;
+            lightRay.style.height = `52px`; // Grosor constante
             lightRay.style.transform = `rotate(${angle}deg)`;
         });
     </script>
 
 </body>
-</html>
-
 </html>
