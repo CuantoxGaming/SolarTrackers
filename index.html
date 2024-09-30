@@ -25,6 +25,9 @@
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
             transition: transform 0.1s;
             z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .rayo {
             position: absolute;
@@ -35,10 +38,6 @@
             transform-origin: bottom center;
             opacity: 0.8;
             z-index: 5;
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         .info {
             padding: 20px;
@@ -79,7 +78,7 @@
             for (let i = 0; i < raysCount; i++) {
                 const rayo = document.createElement('div');
                 rayo.classList.add('rayo');
-                rayo.style.transform = `rotate(${i * angleStep}deg) translateY(-40px)`;
+                rayo.style.transform = `rotate(${i * angleStep}deg) translateY(-50px)`;
                 sunRay.appendChild(rayo);
             }
         }
